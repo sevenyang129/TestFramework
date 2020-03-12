@@ -1,16 +1,15 @@
 # -*- coding:UTF-8 -*-
 import os
 from PIL import Image, ImageChops
-
+from pathlib import Path
 
 class ImageDiff(object):
     def __init__(self, file_path=None):
         if file_path is None:
-            self.file_path = os.path.abspath(os.path.dirname(os.getcwd()))
+            self.file_path = str(Path.home() + '/TestingFramework/images')
 
     def diff_images(self, one, two, different):
         """
-        此模块可以进行 UI 界面对比;
         one: 第一张图片的名称
         two: 第二张图片的名称
         different: 生成对比图保存名称

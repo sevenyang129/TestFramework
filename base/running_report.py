@@ -1,7 +1,7 @@
 import os
 import time
 from config import HTMLTestReportCN
-
+from pathlib import Path
 
 class RunningReport(object):
     """
@@ -16,17 +16,18 @@ class RunningReport(object):
 
 
     def __init__(self, report_file_path=None, title=None, description=None):
+
         path_time = time.strftime('%Y-%m-%d-%H', time.localtime(time.time()))
+        # 获取 home 路径
+        home = str(Path.home())
 
         if report_file_path is None:
-            self.report_file_path = os.path.abspath(os.path.dirname(os.getcwd())) + '/report/' + path_time + '.html'
-        elif report_file_path == 1:
-            self.report_file_path = os.getcwd() + '/report/' + path_time + '.html'
+            self.report_file_path = home + '/TestingFramework/report/' + path_time + '.html'
 
         if title is None:
-            self.title = 'test report'
+            self.title = 'LanHu test report'
         if description is None:
-            self.description = 'Web testing'
+            self.description = 'LanHu web testing'
 
         self.fw = open(self.report_file_path, 'wb')
         self.runner = HTMLTestReportCN.HTMLTestRunner(

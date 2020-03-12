@@ -169,6 +169,7 @@ from xml.sax import saxutils
 import sys
 import os
 import re
+from pathlib import Path
 
 # 全局变量      -- Gelomen
 _global_dict = {}
@@ -1260,7 +1261,8 @@ class DirAndFiles(object):
 
     def __init__(self):
         # self.path = "../../result/"
-        self.path = "/Users/sevenyang/TestingFramework/report"
+        home = str(Path.home())
+        self.path = home + "/TestingFramework/report"
         self.title = "Test Report"
 
     def create_dir(self, title=None):
@@ -1296,8 +1298,8 @@ class DirAndFiles(object):
         # new_dir = GlobalMsg.get_value("dir_path")
 
         # 截图存储路径
-        # new_dir = os.getcwd() + '/report/image/'
-        new_dir = os.path.join(os.path.abspath(os.path.dirname(os.getcwd())), 'report', 'image/', )
+
+        new_dir = str(Path.home()) + '/report/image/'
         # print(new_dir)
 
         # photo_name 实例化对应截图命名

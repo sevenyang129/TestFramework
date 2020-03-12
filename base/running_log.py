@@ -2,6 +2,7 @@
 import logging
 import os
 import time
+from pathlib import Path
 
 
 class RunningLog(object):
@@ -16,14 +17,11 @@ class RunningLog(object):
     def __init__(self, logger, log_file_path=None):
         self.logger = logging.getLogger(logger)
         self.logger.setLevel(logging.INFO)
-
+        # 获取 home 路径
+        home = str(Path.home())
         path_time = time.strftime('%Y-%m-%d-%H', time.localtime(time.time()))
         if log_file_path is None:
-            # 当目标 py 文件在根目录下的文件夹内使用此路径
-            log_file_path = os.path.abspath(os.path.dirname(os.getcwd())) + '/logs/' + path_time + '.log'
-        elif log_file_path == 1:
-            # 当目标 py 文件在根目录下使用此路径
-            log_file_path = os.getcwd() + '/logs/' + path_time + '.log'
+            log_file_path = home + '/TestingFramework/logs/' + path_time + '.log'
 
         if not self.logger.handlers:
             self.file_handle = logging.FileHandler(log_file_path, encoding='utf-8')

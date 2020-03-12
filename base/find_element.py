@@ -72,5 +72,3 @@ class FindElement(object):
         ActionChains(self.driver).move_to_element(el).perform()
 
 
-if __name__ == '__main__':
-    pass

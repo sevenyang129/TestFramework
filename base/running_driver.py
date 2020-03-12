@@ -1,13 +1,14 @@
 # -*- coding: UTF-8 -*-
 import os
 from selenium import webdriver
-
+from pathlib import Path
 
 def web_url():
-    return 'https://www.baidu.com'
+    return 'https://lanhuapp.com/web/#/user/login'
 
 def img_path(img_name):
-    return os.path.join(os.path.abspath(os.path.dirname(os.getcwd())), 'images', 'new_images', img_name + '.png')
+    i_path = str(Path.home()) + '/images/new_images/' + img_name + '.png'
+    return i_path
 
 
 class RunDriver(object):
@@ -17,10 +18,10 @@ class RunDriver(object):
         使用 Safari 需要把浏览器偏好设置内的开发标签打开，并勾选“允许自动化运行”
         使用时，引入该模块，RunDriver(dr_path='路径位置').run_driver(driver='浏览器名称')
         """
+        home = str(Path.home())
         if dr_path is None:
-            self.dr_path = os.path.join(os.path.abspath(os.path.dirname(os.getcwd())), 'config', 'chromedriver')
-        elif dr_path == 1:
-            self.dr_path = os.path.join(os.getcwd(), 'config', 'chromedriver')
+            self.dr_path = home + '/TestingFramework/config/chromedriver'
+
         # print(self.dr_path)
     def run_driver(self, driver=None):
         if driver is None:
@@ -29,3 +30,8 @@ class RunDriver(object):
             return webdriver.Firefox()
         elif driver == 'Safari':
             return webdriver.Safari()
+
+
+
+if __name__ == '__main__':
+    pass

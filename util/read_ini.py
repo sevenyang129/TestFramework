@@ -1,16 +1,17 @@
 # -*- coding: UTF-8 -*-
 import os
 import configparser
-
+from pathlib import Path
 
 class ReadIni(object):
     # 初始化目录与节点路径
 
     def __init__(self, ini_file_path=None, node=None):
         if ini_file_path is None:
-            ini_file_path = os.path.join(os.path.abspath(os.path.dirname(os.getcwd())), 'config', 'PageElement.ini')
-        if ini_file_path == 1:
-            ini_file_path = os.path.join(os.getcwd(), 'config', 'PageElement.ini')
+            # 获取 home 路径
+            home = str(Path.home())
+            # 配置文件路径
+            ini_file_path = home + '/TestingFramework/config/PageElement.ini'
         if node is None:
             self.node = 'LoginPageElement'
         else:
